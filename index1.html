@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>محفظة أعمال سينمائية | المخرج القادم</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <style>
+        /* --- متغيرات أبل والسينما --- */
+        :root {
+            --bg-color: #000000;
+            --surface-color: #1c1c1e;
+            --glass-bg: rgba(28, 28, 30, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --accent: #0a84ff; /* أزرق أبل الداكن */
+            --accent-glow: rgba(10, 132, 255, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* --- شريط التنقل الزجاجي (Apple Style Navbar) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover { opacity: 1; }
+
+        /* --- القسم الرئيسي (Hero Section) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, #1a1a24 0%, var(--bg-color) 70%);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            background: linear-gradient(180deg, #fff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeUp 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 4vw, 24px);
+            color: var(--text-secondary);
+            max-width: 600px;
+            animation: fadeUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        /* --- قسم من أنا (About Me) --- */
+        .section {
+            padding: 120px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .about-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 50px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .about-card:hover { transform: translateY(-5px); }
+
+        .about-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: url('https://images.unsplash.com/photo-1604085420310-7494548485c2?auto=format&fit=crop&q=80&w=500') center/cover;
+            border: 2px solid var(--glass-border);
+            flex-shrink: 0;
+        }
+
+        .about-text h3 { font-size: 24px; margin-bottom: 15px; }
+        .about-text p { color: var(--text-secondary); font-size: 17px; margin-bottom: 20px; line-height: 1.7; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--text-primary);
+            color: var(--bg-color);
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover { background: var(--text-secondary); transform: scale(1.05); }
+
+        /* --- قسم الأعمال (Portfolio) --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            group;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .project-card:hover .project-img { transform: scale(1.05); }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover .project-overlay { opacity: 1; }
+
+        .project-overlay h4 { font-size: 22px; margin-bottom: 5px; }
+        .project-overlay p { color: var(--text-secondary); font-size: 14px; margin-bottom: 15px; }
+        
+        .play-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        /* --- الفوتر --- */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* --- رسوم متحركة (Animations) --- */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- التجاوب مع الجوال (Responsive) --- */
+        @media (max-width: 768px) {
+            .about-card { flex-direction: column; text-align: center; padding: 30px; }
+            .about-img { width: 150px; height: 150px; margin: 0 auto; }
+            .project-overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%); padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#about">النبذة</a></li>
+            <li><a href="#works">الأعمال</a></li>
+            <li><a href="#contact">التواصل</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <h1>صناعة الأفلام<br>تبدأ برؤية.</h1>
+        <p>مرحباً، أنا صانع أفلام. أؤمن بأن العدسة ليست مجرد أداة للتسجيل، بل هي نافذة لسرد القصص التي تلامس الروح.</p>
+    </section>
+
+    <section class="section" id="about">
+        <h2 class="section-title">من خلف الكاميرا</h2>
+        <div class="about-card">
+            <div class="about-img"></div>
+            <div class="about-text">
+                <h3>شغف يتجاوز قاعات الدراسة</h3>
+                <p>كصانع أفلام يخطو خطواته الواثقة نحو الصناعة الاحترافية، أجمع بين المعرفة الأكاديمية الحديثة والروح الإبداعية المستقلة. تخصصت في الإخراج والتحرير السينمائي، وهدفي هو تحويل الأفكار المعقدة إلى مشاهد بصرية خالدة تعكس ثقافتنا وتنافس عالمياً.</p>
+                <a href="#" class="btn"><i class="ri-file-download-line"></i> تحميل السيرة الذاتية (PDF)</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="works">
+        <h2 class="section-title">العدسة والضوء</h2>
+        <div class="portfolio-grid">
+            
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=800" alt="فيلم قصير" class="project-img">
+                <div class="project-overlay">
+                    <h4>الظل الأخير</h4>
+                    <p>فيلم درامي قصير | مشروع أكاديمي</p>
+                    <div class="play-btn"><i class="ri-play-fill"></i></div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&q=80&w=800" alt="إعلان تجاري" class="project-img">
+                <div class="project-overlay">
+                    <h4>حملة "نبض"</h4>
+                    <p>إعلان تجاري | تصوير وإضاءة</p>
+                    <div class="play-btn"><i class="ri-play-fill"></i></div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=800" alt="وثائقي" class="project-img">
+                <div class="project-overlay">
+                    <h4>أصوات المدينة</h4>
+                    <p>فيلم وثائقي | مونتاج وتلوين (Color Grading)</p>
+                    <div class="play-btn"><i class="ri-play-fill"></i></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>متاح للعمل على المشاريع الإبداعية المستقلة والتجارية.</p>
+        <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px; font-size: 24px;">
+            <a href="#" style="color: var(--text-secondary);"><i class="ri-instagram-line"></i></a>
+            <a href="#" style="color: var(--text-secondary);"><i class="ri-vimeo-line"></i></a>
+            <a href="#" style="color: var(--text-secondary);"><i class="ri-mail-send-line"></i></a>
+        </div>
+        <p style="margin-top: 20px; font-size: 12px; opacity: 0.5;">© 2026 جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about-card, .project-card').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            el.style.transition = "all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)";
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
