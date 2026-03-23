@@ -32,6 +32,19 @@
             overflow-x: hidden;
         }
 
+        /* --- تأثيرات الظهور (Animations) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* --- الهيدر والشعار --- */
         nav {
             position: fixed;
@@ -111,6 +124,7 @@
             flex-direction: column;
             gap: 40px;
             align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         @media (min-width: 768px) {
@@ -144,6 +158,11 @@
             overflow: hidden;
             aspect-ratio: 16/9;
             position: relative;
+            transition: transform 0.4s ease;
+        }
+        
+        .project-card:hover {
+            transform: scale(1.02);
         }
 
         .project-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
@@ -192,14 +211,14 @@
         <button class="lang-switcher" onclick="toggleLang()" id="lang-btn">English</button>
     </nav>
 
-    <section class="hero">
+    <section class="hero reveal">
         <h1 id="hero-title">صناعة الأفلام<br>تبدأ برؤية.</h1>
-        <p id="hero-desc">أمرحبا انا ندى، أؤمن بأن العدسة ليست مجرد أداة للتسجيل، بل هي نافذة لسرد القصص التي تلامس الروح.</p>
+        <p id="hero-desc">مرحبا انا ندى، أؤمن بأن العدسة ليست مجرد أداة للتسجيل، بل هي نافذة لسرد القصص التي تلامس الروح.</p>
     </section>
 
     <section class="section" id="about">
-        <h2 class="section-title" id="about-title">من خلف الكاميرا</h2>
-        <div class="about-card">
+        <h2 class="section-title reveal" id="about-title">من خلف الكاميرا</h2>
+        <div class="about-card reveal">
             <div class="about-img"></div>
             <div class="about-text">
                 <h3 id="about-card-h3">شغف يتجاوز الحدود</h3>
@@ -213,20 +232,20 @@
     </section>
 
     <section class="section">
-        <h2 class="section-title" id="works-title">أحدث الأعمال</h2>
+        <h2 class="section-title reveal" id="works-title">أحدث الأعمال</h2>
         <div class="portfolio-grid">
-            <div class="project-card">
+            <div class="project-card reveal">
                 <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=800" class="project-img">
                 <div class="project-info"><h4 id="p1-title">الظل الأخير</h4><p id="p1-desc">فيلم قصير | إخراج</p></div>
             </div>
-            <div class="project-card">
+            <div class="project-card reveal">
                 <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&q=80&w=800" class="project-img">
                 <div class="project-info"><h4 id="p2-title">حملة نبض</h4><p id="p2-desc">عمل تجاري | مونتاج</p></div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer class="reveal">
         <p id="footer-text">متاحة للعمل على المشاريع الإبداعية المستقلة والتجارية.</p>
         <div class="social-links">
             <a href="#top" class="back-to-top"><i class="ri-instagram-line"></i></a>
@@ -239,13 +258,13 @@
     <script>
         const content = {
             ar: {
-                logo: "ندى", heroTitle: "صناعة الأفلام<br>تبدأ برؤية.", heroDesc: "أؤمن بأن العدسة ليست مجرد أداة للتسجيل، بل هي نافذة لسرد القصص التي تلامس الروح.",
+                logo: "ندى", heroTitle: "صناعة الأفلام<br>تبدأ برؤية.", heroDesc: "مرحبا انا ندى، أؤمن بأن العدسة ليست مجرد أداة للتسجيل، بل هي نافذة لسرد القصص التي تلامس الروح.",
                 aboutTitle: "من خلف الكاميرا", aboutH3: "شغف يتجاوز الحدود", aboutP: "كصانعة أفلام تخطو خطواتها الواثقة نحو الصناعة الاحترافية، أجمع بين المعرفة الأكاديمية والروح الإبداعية المستقلة.",
                 worksTitle: "أحدث الأعمال", p1T: "الظل الأخير", p1D: "فيلم قصير | إخراج", p2T: "حملة نبض", p2D: "عمل تجاري | مونتاج",
                 footer: "متاحة للعمل على المشاريع الإبداعية المستقلة والتجارية.", langBtn: "English", dir: "rtl", lang: "ar"
             },
             en: {
-                logo: "Nada", heroTitle: "Filmmaking<br>Starts With Vision.", heroDesc: "I believe the lens is not just a tool for recording, but a window to storytelling that touches the soul.",
+                logo: "Nada", heroTitle: "Filmmaking<br>Starts With Vision.", heroDesc: "Hi, I'm Nada. I believe the lens is not just a tool for recording, but a window to storytelling that touches the soul.",
                 aboutTitle: "Behind the Lens", aboutH3: "Passion Beyond Borders", aboutP: "As a filmmaker stepping confidently into the industry, I combine academic knowledge with a creative independent spirit.",
                 worksTitle: "Latest Works", p1T: "The Last Shadow", p1D: "Short Film | Director", p2T: "Pulse Campaign", p2D: "Commercial | Editor",
                 footer: "Available for creative independent and commercial projects.", langBtn: "عربي", dir: "ltr", lang: "en"
@@ -275,12 +294,36 @@
             document.getElementById('lang-btn').innerText = data.langBtn;
         }
 
+        // إرجاع الصفحة للأعلى عند الضغط
         document.querySelectorAll('.back-to-top').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
+
+        /* --- محرك تأثيرات الظهور عند النزول --- */
+        const observerOptions = {
+            threshold: 0.15 // يظهر العنصر عندما يظهر 15% منه على الشاشة
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // بمجرد ظهوره لا نحتاج لمراقبته مرة أخرى
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // تشغيل المراقب على كل العناصر التي تحمل كلاس reveal
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
     </script>
 </body>
 </html>
