@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="html-tag">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>سينمائي | محفظة أعمال</title>
+    <title>Cinema Portfolio | محفظة أعمال سينمائية</title>
     
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     
     <style>
         :root {
             --bg-color: #000000;
-            --surface-color: #1c1c1e;
-            --glass-bg: rgba(28, 28, 30, 0.7);
+            --surface: #1c1c1e;
+            --glass: rgba(28, 28, 30, 0.8);
             --glass-border: rgba(255, 255, 255, 0.1);
-            --text-primary: #f5f5f7;
-            --text-secondary: #86868b;
+            --text-p: #f5f5f7;
+            --text-s: #86868b;
             --accent: #0a84ff;
         }
 
@@ -22,284 +22,266 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, system-ui, sans-serif;
-            -webkit-font-smoothing: antialiased;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            scroll-behavior: smooth; /* تمرير ناعم عند العودة للأعلى */
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-primary);
+            color: var(--text-p);
             overflow-x: hidden;
         }
 
-        /* --- Navbar المتوافق مع النتوء (Notch) --- */
+        /* --- الهيدر والشعار --- */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: var(--glass);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 1000;
             padding: env(safe-area-inset-top) 20px 15px 20px;
             border-bottom: 0.5px solid var(--glass-border);
-        }
-
-        nav ul {
             display: flex;
-            justify-content: center;
-            gap: clamp(15px, 5vw, 40px);
-            list-style: none;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        nav a {
-            color: var(--text-primary);
+        .logo {
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-p);
             text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
         }
 
-        /* --- Hero Section المطور للجوال --- */
+        .logo-box {
+            width: 32px;
+            height: 32px;
+            background: var(--text-p);
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .lang-switcher {
+            background: rgba(255,255,255,0.1);
+            border: 0.5px solid var(--glass-border);
+            color: var(--text-p);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* --- Hero Section --- */
         .hero {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
             text-align: center;
+            padding: 20px;
             background: radial-gradient(circle at center, #1a1a24 0%, var(--bg-color) 80%);
         }
 
-        .hero h1 {
-            font-size: clamp(34px, 10vw, 70px);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 15px;
-            background: linear-gradient(180deg, #fff 30%, #555 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .hero h1 { font-size: clamp(38px, 10vw, 75px); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .hero p { font-size: clamp(16px, 4vw, 22px); color: var(--text-s); max-width: 600px; }
 
-        .hero p {
-            font-size: clamp(16px, 4vw, 20px);
-            color: var(--text-secondary);
-            max-width: 90%;
-            line-height: 1.4;
-        }
-
-        /* --- About Section (تعديل جذري للجوال) --- */
-        .section {
-            padding: 80px 20px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            text-align: center;
-        }
+        /* --- الأقسام --- */
+        .section { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
+        .section-title { font-size: clamp(28px, 6vw, 40px); font-weight: 700; margin-bottom: 40px; text-align: center; }
 
         .about-card {
-            background: var(--glass-bg);
+            background: var(--glass);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: clamp(25px, 5vw, 50px);
+            border-radius: 28px;
+            padding: clamp(30px, 6vw, 60px);
             display: flex;
-            flex-direction: column; /* التلقائي للجوال */
-            gap: 30px;
+            flex-direction: column;
+            gap: 40px;
             align-items: center;
         }
 
-        /* للآيباد واللابتوب يتحول لجنب بعض */
         @media (min-width: 768px) {
-            .about-card { flex-direction: row; text-align: right; }
+            .about-card { flex-direction: row; }
+            html[dir="rtl"] .about-card { text-align: right; }
+            html[dir="ltr"] .about-card { text-align: left; }
         }
 
         .about-img {
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            background: #333 url('https://images.unsplash.com/photo-1604085420310-7494548485c2?auto=format&fit=crop&q=80&w=500') center/cover;
-            flex-shrink: 0;
+            background: url('https://images.unsplash.com/photo-1604085420310-7494548485c2?auto=format&fit=crop&q=80&w=500') center/cover;
             border: 3px solid var(--glass-border);
+            flex-shrink: 0;
         }
 
-        .about-text h3 { font-size: 22px; margin-bottom: 10px; text-align: center; }
-        @media (min-width: 768px) { .about-text h3 { text-align: right; } }
+        .about-text h3 { font-size: 26px; margin-bottom: 15px; }
+        .about-text p { color: var(--text-s); line-height: 1.7; margin-bottom: 30px; font-size: 17px; }
 
-        .about-text p { 
-            color: var(--text-secondary); 
-            font-size: 15px; 
-            line-height: 1.6; 
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        @media (min-width: 768px) { .about-text p { text-align: right; font-size: 17px; } }
-
-        .btn-wrapper { text-align: center; }
-        @media (min-width: 768px) { .btn-wrapper { text-align: right; } }
-
-        .btn {
-            background: #fff;
-            color: #000;
-            padding: 12px 24px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        /* --- Portfolio Grid المتجاوب --- */
+        /* --- الشبكة السينمائية --- */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: 1fr; /* عمود واحد للجوال */
-            gap: 20px;
-        }
-
-        @media (min-width: 600px) {
-            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (min-width: 1000px) {
-            .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
         .project-card {
-            position: relative;
-            border-radius: 20px;
+            background: #111;
+            border-radius: 24px;
             overflow: hidden;
             aspect-ratio: 16/9;
-            background: #111;
+            position: relative;
         }
 
-        .project-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-
+        .project-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
         .project-info {
             position: absolute;
             bottom: 0;
+            padding: 25px;
             width: 100%;
-            padding: 20px;
             background: linear-gradient(transparent, rgba(0,0,0,0.9));
         }
 
-        .project-info h4 { font-size: 18px; font-weight: 600; }
-        .project-info p { font-size: 12px; color: var(--text-secondary); }
-
-        /* --- Footer --- */
+        /* --- الفوتر --- */
         footer {
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
             border-top: 0.5px solid var(--glass-border);
         }
 
-        .social-icons {
+        .social-links {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin: 20px 0;
-            font-size: 24px;
+            gap: 30px;
+            margin: 30px 0;
         }
 
-        .social-icons a { color: var(--text-secondary); text-decoration: none; }
+        .social-links a {
+            color: var(--text-s);
+            font-size: 28px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
 
-        /* الأنميشن */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .social-links a:hover { color: var(--text-p); transform: translateY(-3px); }
+
+        /* ميزة الصعود للأعلى */
+        .back-to-top { cursor: pointer; }
+
     </style>
 </head>
-<body>
+<body id="top">
 
     <nav>
-        <ul>
-            <li><a href="#home">الرئيسية</a></li>
-            <li><a href="#about">النبذة</a></li>
-            <li><a href="#works">الأعمال</a></li>
-        </ul>
+        <a href="#top" class="logo back-to-top">
+            <div class="logo-box">C</div>
+            <span id="logo-text">CINEMA</span>
+        </a>
+        <button class="lang-switcher" onclick="toggleLang()" id="lang-btn">English</button>
     </nav>
 
-    <section class="hero" id="home">
-        <h1>صناعة الأفلام<br>تبدأ برؤية.</h1>
-        <p>مرحباً، أنا ندى صانعة أفلام. أؤمن بأن العدسة ليست مجرد أداة للتسجيل، بل هي نافذة لسرد القصص التي تلامس الروح.</p>
+    <section class="hero">
+        <h1 id="hero-title">صناعة الأفلام<br>تبدأ برؤية.</h1>
+        <p id="hero-desc">أؤمن بأن العدسة ليست مجرد أداة للتسجيل، بل هي نافذة لسرد القصص التي تلامس الروح.</p>
     </section>
 
     <section class="section" id="about">
-        <div class="about-card reveal">
+        <h2 class="section-title" id="about-title">من خلف الكاميرا</h2>
+        <div class="about-card">
             <div class="about-img"></div>
             <div class="about-text">
-                <h3>المخرج</h3>
-                <p> مصورة ومخرجة طموحة، أبحث دائماً عن الزاوية التي لم يراها أحد. خبرتي في المونتاج وتنسيق الإضاءة تجعلني قادره على تحويل أبسط اللحظات إلى مشاهد سينمائية مؤثرة.</p>
-                <div class="btn-wrapper">
-                    <a href="#" class="btn"><i class="ri-mail-line"></i> تواصل معي</a>
+                <h3 id="about-card-h3">شغف يتجاوز الحدود</h3>
+                <p id="about-card-p"> مرحبا، انا ندى. كصانعة أفلام تخطو خطواتها الواثقة نحو الصناعة الاحترافية، أجمع بين المعرفة الأكاديمية والروح الإبداعية المستقلة لتحويل الأفكار إلى مشاهد بصرية خالدة.</p>
+                <div class="social-links" style="margin: 0; justify-content: start;">
+                    <a href="#top" class="back-to-top"><i class="ri-mail-send-line"></i></a>
+                    <a href="#top" class="back-to-top"><i class="ri-instagram-line"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section" id="works">
-        <h2 class="section-title reveal">أحدث الأعمال</h2>
+    <section class="section">
+        <h2 class="section-title" id="works-title">أحدث الأعمال</h2>
         <div class="portfolio-grid">
-            <div class="project-card reveal">
+            <div class="project-card">
                 <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=800" class="project-img">
-                <div class="project-info">
-                    <h4>رحلة تائه</h4>
-                    <p>فيلم قصير - إخراج</p>
-                </div>
+                <div class="project-info"><h4 id="p1-title">الظل الأخير</h4><p id="p1-desc">فيلم قصير | إخراج</p></div>
             </div>
-            <div class="project-card reveal">
+            <div class="project-card">
                 <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&q=80&w=800" class="project-img">
-                <div class="project-info">
-                    <h4>إعلان "سرعة"</h4>
-                    <p>إعلان تجاري - مونتاج</p>
-                </div>
-            </div>
-            <div class="project-card reveal">
-                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=800" class="project-img">
-                <div class="project-info">
-                    <h4>المدينة الصامتة</h4>
-                    <p>فيلم وثائقي - تصوير</p>
-                </div>
+                <div class="project-info"><h4 id="p2-title">حملة نبض</h4><p id="p2-desc">عمل تجاري | مونتاج</p></div>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="social-icons">
-            <a href="#"><i class="ri-instagram-line"></i></a>
-            <a href="#"><i class="ri-twitter-x-line"></i></a>
-            <a href="#"><i class="ri-vimeo-line"></i></a>
+        <p id="footer-text">متاح للعمل على المشاريع الإبداعية المستقلة والتجارية.</p>
+        <div class="social-links">
+            <a href="#top" class="back-to-top"><i class="ri-instagram-line"></i></a>
+            <a href="#top" class="back-to-top"><i class="ri-twitter-x-line"></i></a>
+            <a href="#top" class="back-to-top"><i class="ri-vimeo-line"></i></a>
         </div>
-        <p>© 2026 | مبرمج بواسطة طالب سينما</p>
+        <p style="font-size: 11px; opacity: 0.4;">© 2026 CINEMA PORTFOLIO</p>
     </footer>
 
     <script>
-        // سكربت التفاعل عند التمرير
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
+        const content = {
+            ar: {
+                logo: "سينما", heroTitle: "صناعة الأفلام<br>تبدأ برؤية.", heroDesc: "أؤمن بأن العدسة ليست مجرد أداة للتسجيل، بل هي نافذة لسرد القصص التي تلامس الروح.",
+                aboutTitle: "من خلف الكاميرا", aboutH3: "شغف يتجاوز الحدود", aboutP: "كصانع أفلام يخطو خطواته الواثقة نحو الصناعة الاحترافية، أجمع بين المعرفة الأكاديمية والروح الإبداعية المستقلة.",
+                worksTitle: "أحدث الأعمال", p1T: "الظل الأخير", p1D: "فيلم قصير | إخراج", p2T: "حملة نبض", p2D: "عمل تجاري | مونتاج",
+                footer: "متاح للعمل على المشاريع الإبداعية المستقلة والتجارية.", langBtn: "English", dir: "rtl", lang: "ar"
+            },
+            en: {
+                logo: "CINEMA", heroTitle: "Filmmaking<br>Starts With Vision.", heroDesc: "I believe the lens is not just a tool for recording, but a window to storytelling that touches the soul.",
+                aboutTitle: "Behind the Lens", aboutH3: "Passion Beyond Borders", aboutP: "As a filmmaker stepping confidently into the industry, I combine academic knowledge with a creative independent spirit.",
+                worksTitle: "Latest Works", p1T: "The Last Shadow", p1D: "Short Film | Director", p2T: "Pulse Campaign", p2D: "Commercial | Editor",
+                footer: "Available for creative independent and commercial projects.", langBtn: "عربي", dir: "ltr", lang: "en"
             }
+        };
+
+        function toggleLang() {
+            const html = document.getElementById('html-tag');
+            const currentLang = html.getAttribute('lang') === 'ar' ? 'en' : 'ar';
+            const data = content[currentLang];
+
+            html.setAttribute('lang', currentLang);
+            html.setAttribute('dir', data.dir);
+            
+            document.getElementById('logo-text').innerText = data.logo;
+            document.getElementById('hero-title').innerHTML = data.heroTitle;
+            document.getElementById('hero-desc').innerText = data.heroDesc;
+            document.getElementById('about-title').innerText = data.aboutTitle;
+            document.getElementById('about-card-h3').innerText = data.aboutH3;
+            document.getElementById('about-card-p').innerText = data.aboutP;
+            document.getElementById('works-title').innerText = data.worksTitle;
+            document.getElementById('p1-title').innerText = data.p1T;
+            document.getElementById('p1-desc').innerText = data.p1D;
+            document.getElementById('p2-title').innerText = data.p2T;
+            document.getElementById('p2-desc').innerText = data.p2D;
+            document.getElementById('footer-text').innerText = data.footer;
+            document.getElementById('lang-btn').innerText = data.langBtn;
         }
-        window.addEventListener("scroll", reveal);
-        reveal(); // للتشغيل عند التحميل لأول مرة
+
+        // ربط أزرار التواصل للعودة للأعلى
+        document.querySelectorAll('.back-to-top').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
     </script>
 </body>
 </html>
