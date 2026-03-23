@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Cinema Portfolio | محفظة أعمال سينمائية</title>
+    <title>Nada | محفظة أعمال سينمائية</title>
     
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     
@@ -23,7 +23,7 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            scroll-behavior: smooth; /* تمرير ناعم عند العودة للأعلى */
+            scroll-behavior: smooth;
         }
 
         body {
@@ -69,6 +69,7 @@
             justify-content: center;
             border-radius: 8px;
             font-size: 16px;
+            font-weight: 900;
         }
 
         .lang-switcher {
@@ -177,7 +178,6 @@
 
         .social-links a:hover { color: var(--text-p); transform: translateY(-3px); }
 
-        /* ميزة الصعود للأعلى */
         .back-to-top { cursor: pointer; }
 
     </style>
@@ -186,8 +186,8 @@
 
     <nav>
         <a href="#top" class="logo back-to-top">
-            <div class="logo-box">C</div>
-            <span id="logo-text">Nada</span>
+            <div class="logo-box">N</div>
+            <span id="logo-text">ندى</span>
         </a>
         <button class="lang-switcher" onclick="toggleLang()" id="lang-btn">English</button>
     </nav>
@@ -203,7 +203,7 @@
             <div class="about-img"></div>
             <div class="about-text">
                 <h3 id="about-card-h3">شغف يتجاوز الحدود</h3>
-                <p id="about-card-p"> مرحبا، انا ندى. كصانعة أفلام تخطو خطواتها الواثقة نحو الصناعة الاحترافية، أجمع بين المعرفة الأكاديمية والروح الإبداعية المستقلة لتحويل الأفكار إلى مشاهد بصرية خالدة.</p>
+                <p id="about-card-p">كصانعة أفلام تخطو خطواتها الواثقة نحو الصناعة الاحترافية، أجمع بين المعرفة الأكاديمية والروح الإبداعية المستقلة لتحويل الأفكار إلى مشاهد بصرية خالدة.</p>
                 <div class="social-links" style="margin: 0; justify-content: start;">
                     <a href="#top" class="back-to-top"><i class="ri-mail-send-line"></i></a>
                     <a href="#top" class="back-to-top"><i class="ri-instagram-line"></i></a>
@@ -227,25 +227,25 @@
     </section>
 
     <footer>
-        <p id="footer-text">متاح للعمل على المشاريع الإبداعية المستقلة والتجارية.</p>
+        <p id="footer-text">متاحة للعمل على المشاريع الإبداعية المستقلة والتجارية.</p>
         <div class="social-links">
             <a href="#top" class="back-to-top"><i class="ri-instagram-line"></i></a>
             <a href="#top" class="back-to-top"><i class="ri-twitter-x-line"></i></a>
             <a href="#top" class="back-to-top"><i class="ri-vimeo-line"></i></a>
         </div>
-        <p style="font-size: 11px; opacity: 0.4;">© 2026 CINEMA PORTFOLIO</p>
+        <p style="font-size: 11px; opacity: 0.4;">© 2026 NADA PORTFOLIO</p>
     </footer>
 
     <script>
         const content = {
             ar: {
-                logo: "سينما", heroTitle: "صناعة الأفلام<br>تبدأ برؤية.", heroDesc: "أؤمن بأن العدسة ليست مجرد أداة للتسجيل، بل هي نافذة لسرد القصص التي تلامس الروح.",
-                aboutTitle: "من خلف الكاميرا", aboutH3: "شغف يتجاوز الحدود", aboutP: "كصانع أفلام يخطو خطواته الواثقة نحو الصناعة الاحترافية، أجمع بين المعرفة الأكاديمية والروح الإبداعية المستقلة.",
+                logo: "ندى", heroTitle: "صناعة الأفلام<br>تبدأ برؤية.", heroDesc: "أؤمن بأن العدسة ليست مجرد أداة للتسجيل، بل هي نافذة لسرد القصص التي تلامس الروح.",
+                aboutTitle: "من خلف الكاميرا", aboutH3: "شغف يتجاوز الحدود", aboutP: "كصانعة أفلام تخطو خطواتها الواثقة نحو الصناعة الاحترافية، أجمع بين المعرفة الأكاديمية والروح الإبداعية المستقلة.",
                 worksTitle: "أحدث الأعمال", p1T: "الظل الأخير", p1D: "فيلم قصير | إخراج", p2T: "حملة نبض", p2D: "عمل تجاري | مونتاج",
-                footer: "متاح للعمل على المشاريع الإبداعية المستقلة والتجارية.", langBtn: "English", dir: "rtl", lang: "ar"
+                footer: "متاحة للعمل على المشاريع الإبداعية المستقلة والتجارية.", langBtn: "English", dir: "rtl", lang: "ar"
             },
             en: {
-                logo: "CINEMA", heroTitle: "Filmmaking<br>Starts With Vision.", heroDesc: "I believe the lens is not just a tool for recording, but a window to storytelling that touches the soul.",
+                logo: "Nada", heroTitle: "Filmmaking<br>Starts With Vision.", heroDesc: "I believe the lens is not just a tool for recording, but a window to storytelling that touches the soul.",
                 aboutTitle: "Behind the Lens", aboutH3: "Passion Beyond Borders", aboutP: "As a filmmaker stepping confidently into the industry, I combine academic knowledge with a creative independent spirit.",
                 worksTitle: "Latest Works", p1T: "The Last Shadow", p1D: "Short Film | Director", p2T: "Pulse Campaign", p2D: "Commercial | Editor",
                 footer: "Available for creative independent and commercial projects.", langBtn: "عربي", dir: "ltr", lang: "en"
@@ -275,7 +275,6 @@
             document.getElementById('lang-btn').innerText = data.langBtn;
         }
 
-        // ربط أزرار التواصل للعودة للأعلى
         document.querySelectorAll('.back-to-top').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
